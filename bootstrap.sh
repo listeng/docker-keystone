@@ -48,9 +48,11 @@ keystone endpoint-create \
 	--region regionOne
 	
 # for swift
+keystone service-create --name=swift --type="object-store" --description="Swift Service"
 keystone user-create --name=swift --pass=admin --tenant=admin --email=demo@keystone.com
+keystone user-role-add --tenant=admin --user=swift --role=admin
 keystone endpoint-create --region regionTwo \
-	--service admin \
+	--service swift \
 	--publicurl http://${KEYSTONE_HOST}:8080/v1/AUTH_admin \
 	--adminurl http://${KEYSTONE_HOST}:8080/ \
 	--internalurl http://${KEYSTONE_HOST}:8080/v1/AUTH_admin
