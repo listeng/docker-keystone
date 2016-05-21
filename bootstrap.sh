@@ -46,6 +46,14 @@ keystone endpoint-create \
 	--internalurl http://${KEYSTONE_HOST}:5000/v2.0 \
 	--adminurl http://${KEYSTONE_HOST}:35357/v2.0 \
 	--region regionOne
+	
+# for swift
+keystone user-create --name=swift --pass=admin --tenant=admin --email=demo@keystone.com
+keystone endpoint-create --region regionTwo \
+	--service admin \
+	--publicurl http://${KEYSTONE_HOST}:8080/v1/AUTH_admin \
+	--adminurl http://${KEYSTONE_HOST}:8080/ \
+	--internalurl http://${KEYSTONE_HOST}:8080/v1/AUTH_admin
 unset OS_SERVICE_TOKEN OS_SERVICE_ENDPOINT
 # FIXME I need restart
 pkill keystone-all
