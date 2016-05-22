@@ -17,6 +17,7 @@ VOLUME /etc/keystone
 EXPOSE 5000 35357
 # copy sql script
 COPY keystone.sql /root/keystone.sql
+COPY openrc /root/openrc
 # copy keystone config file
 COPY keystone.conf /etc/keystone/keystone.conf
 
